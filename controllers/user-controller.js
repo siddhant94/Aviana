@@ -44,7 +44,7 @@ async function saveUserIfNew(req, res) {
   } catch (err) {
     return res.status(500).json({
       error: err,
-      action: 'findUserAndAuthenticateError',
+      action: 'saveUserIfNewError',
     });
   }
   return res.send;
@@ -96,5 +96,3 @@ async function findUserAndAuthenticate(userEmail, userPass, res) {
 
 exports.saveUserIfNew = saveUserIfNew;
 exports.findUserAndAuthenticate = findUserAndAuthenticate;
-// module.exports.saveUserIfNew();
-// module.exports.findUserAndAuthenticate();
