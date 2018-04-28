@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 async function registerAppAndGenerateKey(req, res) {
   try {
-  // Checks for existing Apps
+    // Checks for existing Apps
     const checkForExistingApp = await AppUser.findOne({ email: req.body.email });
     if (!checkForExistingApp) {
       // Generate hash for password
