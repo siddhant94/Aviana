@@ -1,4 +1,5 @@
 // const JWTToken = require('../helpers/jwt-generator.js');
+const mongoDb = require('../config/db');
 const User = require('../models/user.model');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -22,7 +23,7 @@ async function saveUserIfNew(req, res) {
         });
       });
       // Use the user object model for creating user schema object.
-      const user = new User({
+      const user = await new User({
         _id: new mongoose.Types.ObjectId(),
         email: req.body.email,
         password: hashGenerated,
