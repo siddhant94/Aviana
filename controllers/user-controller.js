@@ -8,7 +8,10 @@ const generateJWT = require('../helpers/jwt-generator');
 async function saveUserIfNew(req, res) {
   try {
     // Checks for existing User
-    const checkForExistingUser = await User.findOne({ email: req.body.email });
+    const checkForExistingUser = await User.findOne({
+      email: req.body.email,
+      app_key: req.headers.app_key,
+    });
     if (!checkForExistingUser) {
       // Generate hash for password
       const hashGenerated = await new Promise((resolve, reject) => {
@@ -27,6 +30,7 @@ async function saveUserIfNew(req, res) {
         _id: new mongoose.Types.ObjectId(),
         email: req.body.email,
         password: hashGenerated,
+        app_key: req.headers.app_key,
       });
       // Save user with created model.
       const saveUser = user.save();
@@ -39,21 +43,21 @@ async function saveUserIfNew(req, res) {
       }
     }
     res.status(200).json({
-      response: 'User already exists',
+      response: 'User already exists', // Can add app's name in response for verbose error.
     });
   } catch (err) {
     return res.status(500).json({
       error: err,
-      action: 'findUserAndAuthenticateError',
+      action: 'saveUserIfNewError',
     });
   }
   return res.send;
 }
 
-async function findUserAndAuthenticate(userEmail, userPass, res) {
+async function findUserAndAuthenticate(userEmail, userPass, appKey, res) {
   try {
     // Find the user.
-    const user = User.findOne({ email: userEmail });
+    const user = User.findOne({ email: userEmail, app_key: appKey });
     // Wait for user.findone to resolve in userDetails.
     const userDetails = await user;
     const comparePass = await new Promise((resolve, reject) => {
@@ -69,7 +73,10 @@ async function findUserAndAuthenticate(userEmail, userPass, res) {
     });
     // If findings's success then proceed with token generation.
     if (comparePass) {
-      const receivedToken = generateJWT(userDetails.email, userDetails.id);
+      const receivedToken = generateJWT.createAccessToken(
+        userDetails.email, userDetails.id,
+        userDetails.app_key,
+      );
       if (!receivedToken) {
         res.status(401).json({
           failed: 'Unauthorized Access via token gen response',
@@ -85,7 +92,7 @@ async function findUserAndAuthenticate(userEmail, userPass, res) {
       failed: 'Unauthorized Access. Either user does not exist or password mismatch.',
     });
   } catch (err) {
-    return res.status(500).json({
+    res.status(500).json({
       error: err,
       action: 'findUserAndAuthenticateError',
     });
@@ -94,7 +101,22 @@ async function findUserAndAuthenticate(userEmail, userPass, res) {
   return res.send;
 }
 
+async function verifyAccessToken(accessToken, res) {
+  try {
+    const secret = 'secret';
+    const userInformation = await generateJWT.verifyJWTTokenForAccessToken(accessToken, secret);
+    delete userInformation.app_key;
+    res.json(userInformation);
+  } catch (error) {
+    const err = {
+      err_text: 'Could not verify user (Either expired or wrong value',
+      err_obj: error,
+    };
+    res.json(err);
+  }
+  return res.send;
+}
+
 exports.saveUserIfNew = saveUserIfNew;
 exports.findUserAndAuthenticate = findUserAndAuthenticate;
-// module.exports.saveUserIfNew();
-// module.exports.findUserAndAuthenticate();
+exports.verifyAccessToken = verifyAccessToken;
