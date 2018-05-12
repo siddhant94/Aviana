@@ -73,7 +73,10 @@ async function findUserAndAuthenticate(userEmail, userPass, appKey, res) {
     });
     // If findings's success then proceed with token generation.
     if (comparePass) {
-      const receivedToken = generateJWT(userDetails.email, userDetails.id, userDetails.app_key);
+      const receivedToken = generateJWT.createAccessToken(
+        userDetails.email, userDetails.id,
+        userDetails.app_key,
+      );
       if (!receivedToken) {
         res.status(401).json({
           failed: 'Unauthorized Access via token gen response',
@@ -98,5 +101,22 @@ async function findUserAndAuthenticate(userEmail, userPass, appKey, res) {
   return res.send;
 }
 
+async function verifyAccessToken(accessToken, res) {
+  try {
+    const secret = 'secret';
+    const userInformation = await generateJWT.verifyJWTTokenForAccessToken(accessToken, secret);
+    delete userInformation.app_key;
+    res.json(userInformation);
+  } catch (error) {
+    const err = {
+      err_text: 'Could not verify user (Either expired or wrong value',
+      err_obj: error,
+    };
+    res.json(err);
+  }
+  return res.send;
+}
+
 exports.saveUserIfNew = saveUserIfNew;
 exports.findUserAndAuthenticate = findUserAndAuthenticate;
+exports.verifyAccessToken = verifyAccessToken;

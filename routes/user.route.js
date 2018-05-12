@@ -20,4 +20,10 @@ router.post('/signin', (req, res) => {
   return response;
 });
 
+router.post('/verify', (req, res) => {
+  const response = userController.verifyAccessToken(req.body.accessToken, res);
+  return response;
+});
+
+
 module.exports = router;
