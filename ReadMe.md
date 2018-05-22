@@ -22,7 +22,7 @@ api_key: 10 digit alpha-numeric string.
 Request :   
 (Header Content)   
 content-type: application/json   
-app_key: "Your 10 digit alpha-numeric app_key"
+app_key: "Your 10 digit alpha-numeric app_key"   
 (Body-content)   
 Values required for keys `email` & `password`.   
 (Email and password for your app's user)
@@ -40,7 +40,7 @@ On Success:
 Request :   
 (Header Content)   
 content-type: application/json   
-app_key: "Your 10 digit alpha-numeric app_key"
+app_key: "Your 10 digit alpha-numeric app_key"   
 (Body-content)   
 Values required for keys `email` & `password`.   
 (Email and password for your app's user)
