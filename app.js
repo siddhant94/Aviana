@@ -9,6 +9,7 @@ const appUser = require('./routes/appUser.route');
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -26,7 +27,6 @@ app.get('/checking', (req, res) => {
 
 app.use('/user', user);
 app.use('/app', appUser);
-app.use(cors());
 
 app.listen(PORT);
 
