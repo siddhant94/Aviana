@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const user = require('./routes/user.route');
@@ -13,18 +14,19 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.json({
-    Tutorial: 'Welcome to the HOME',
+    Aviana: 'Welcome to the AVIANA AUTH',
   });
 });
 
 app.get('/checking', (req, res) => {
   res.json({
-    Tutorial: 'Welcome to the Node express JWT Tutorial',
+    Tutorial: 'Welcome to the Aviana (Auth as service using JWT)',
   });
 });
 
 app.use('/user', user);
 app.use('/app', appUser);
+app.use(cors());
 
 app.listen(PORT);
 
