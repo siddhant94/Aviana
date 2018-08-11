@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
 // const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyM0Bnb29nbGUuY29tIiw
 // iX2lkIjoiNWFlNDNjMmNiZmE5NG
@@ -23,7 +24,7 @@ const createAccessToken = (userEmail, id, appKey) => {
       _id: id,
       app_key: appKey,
     },
-    'secret',
+    config.app_secret,
     {
       // expiresIn: '2h',
       expiresIn: '2h',
