@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<head>
+  <!--
+      Set the character encoding for this document, so that
+      all characters within the UTF-8 space (such as emoji)
+      are rendered correctly.
+    -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+     The above 2 meta tags *must* come first in the <head>
+     to consistently ensure proper document rendering.
+     Any other head element should come *after* these tags.
+    -->
+  <title>Aviana Auth</title>
+  <!-- Theme Color for Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#4285f4">
+  <!-- Short description of the document (limit to 150 characters) -->
+  <!-- This content *may* be used as a part of search engine results. -->
+  <meta name="Aviana Auth" content="A NodeJS JWT based authentication service">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <style>
+    html {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    body {
+      margin: 0px;
+    }
+
+    .main-container {
+      background-image: linear-gradient(-225deg, #CBBACC 0%, #2580B3 100%);
+      background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+      background-image: linear-gradient(to right, #720e9e 0, #dd4b39 100%);
+      background-repeat: repeat-x;
+      font-family: 'Quicksand', sans-serif;
+      box-sizing: border-box;
+      height: 92vh;
+    }
+
+    .heading-text {
+      font-size: 10vw;
+      text-align: center;
+      background: #202020;
+      padding-top: 20%;
+      padding-bottom: 20%;
+      box-sizing: border-box;
+    }
+    .sub-heading-text {
+      font-size: 4.5vw;
+      color: whitesmoke;
+    }
+
+    .content-text {
+      padding-top: 50%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .slick-dots {
+      position: absolute;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .slick-dots li {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 0 5px;
+      padding: 0;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .slick-dots li button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+    }
+
+    .slick-dots li button::before {
+      font-family: slick;
+      font-size: 15px;
+      line-height: 20px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 20px;
+      height: 20px;
+      content: "•";
+      text-align: center;
+      opacity: 0.55;
+      color: whitesmoke;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .one-button {
+      background: #e74c3c;
+      padding: 1.125rem 3rem;
+      border-radius: 10px;
+      color: whitesmoke;
+      font-size: 4.5vw;
+      box-sizing: border-box;
+    }
+    
+    .btn-outline {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 18px 24px;
+      font-size: inherit;
+      font-weight: 500;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: whitesmoke;
+      border-color: rgba(255,255,255,0.5);
+      touch-action: manipulation;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover, .btn-outline:active {
+      color: #720e9e;
+      background-color: #fff;
+      border-color: #fff;
+    }
+
+    .fa {
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .fa-github:before {
+      content: "\f09b";
+    }
+
+    @media only screen and (min-width: 426px) and (max-width: 768px){
+      .heading-text {
+        font-size: 8vw;
+        padding-top: 10%;
+        padding-bottom: 10%;
+      }
+      .sub-heading-text {
+        font-size: 4.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 20%;
+      }
+    }
+
+    @media only screen and (min-width: 769px) and (max-width: 1024px){ 
+      .heading-text {
+        font-size: 6vw;
+        padding-top: 10%;
+        padding-bottom: 10%;
+      }
+      .sub-heading-text {
+        font-size: 3.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 20%;
+      }
+    }
+
+    @media only screen and (min-width: 1025px) and (max-width: 1440px){ 
+      .heading-text {
+        font-size: 4.5vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+      }
+      .sub-heading-text {
+        font-size: 2.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 15%;
+      }
+    }
+
+    @media only screen and (min-width: 1441px) { 
+      .heading-text {
+        font-size: 4.5vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+      }
+      .sub-heading-text {
+        font-size: 2.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 10%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="heading-text">
+      <span style="display: block; color: whitesmoke; border-right: 6px solid #e74c3c; margin-right: 25px;">AVIANA</span>
+      <span class="sub-heading-text">A NodeJS JWT based authentication service</span>
+    </div>
+    <div class="content-text">
+      <a class="btn-outline" style="border-color: rgba(255,255,255,0.5);" href="https://github.com/siddhant94/Aviana">
+        <span class="fab fa-github"></span> View on GitHub
+      </a>
+      <ul class="slick-dots" style="margin-top: 20px;" role="tablist">
+        <li class="slick-active" aria-hidden="false" role="presentation" aria-selected="true" aria-controls="navigation10" id="slick-slide10">
+          <button type="button" data-role="none" role="button" tabindex="0">1</button>
+        </li>
+        <li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation11" id="slick-slide11">
+          <button type="button" data-role="none" role="button" tabindex="0">2</button>
+        </li>
+        <li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation12" id="slick-slide12">
+          <button type="button" data-role="none" role="button" tabindex="0">3</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <footer style="background: #202020; box-sizing: border-box; height: 8vh; text-align: center;">
+    <div style="color: whitesmoke; box-sizing: border-box; padding-top: 20px;">The service is open source hosted on GitHub.</div>
+  </footer>
+</body>
+
+</html>
