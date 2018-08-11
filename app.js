@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 const cors = require('cors');
@@ -14,9 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.json({
-    Aviana: 'Welcome to the AVIANA AUTH',
-  });
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 app.get('/checking', (req, res) => {

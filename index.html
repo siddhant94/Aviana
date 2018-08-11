@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<head>
+  <!--
+      Set the character encoding for this document, so that
+      all characters within the UTF-8 space (such as emoji)
+      are rendered correctly.
+    -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+     The above 2 meta tags *must* come first in the <head>
+     to consistently ensure proper document rendering.
+     Any other head element should come *after* these tags.
+    -->
+  <title>Aviana Auth</title>
+  <!-- Theme Color for Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#4285f4">
+  <!-- Short description of the document (limit to 150 characters) -->
+  <!-- This content *may* be used as a part of search engine results. -->
+  <meta name="Aviana Auth" content="A NodeJS JWT based authentication service">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <style>
+    html {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    body {
+      margin: 0px;
+    }
+
+    .main-container {
+      background-image: linear-gradient(-225deg, #CBBACC 0%, #2580B3 100%);
+      background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+      background-image: linear-gradient(to right, #720e9e 0, #dd4b39 100%);
+      background-repeat: repeat-x;
+      font-family: 'Open Sans', sans-serif;
+      box-sizing: border-box;
+      height: 92vh;
+    }
+
+    .heading-text {
+      font-size: 10vw;
+      text-align: center;
+      background: #202020;
+      padding-top: 40%;
+      padding-bottom: 20%;
+      box-sizing: border-box;
+    }
+
+    .content-text {
+      padding-top: 20%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .slick-dots {
+      position: absolute;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .slick-dots li {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 0 5px;
+      padding: 0;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .slick-dots li button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+    }
+
+    .slick-dots li button::before {
+      font-family: slick;
+      font-size: 15px;
+      line-height: 20px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 20px;
+      height: 20px;
+      content: "•";
+      text-align: center;
+      opacity: 0.55;
+      color: whitesmoke;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .one-button {
+      background: #e74c3c;
+      padding: 1.125rem 3rem;
+      border-radius: 10px;
+      color: whitesmoke;
+      font-size: 4.5vw;
+      box-sizing: border-box;
+    }
+    
+    .btn-outline {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 18px 24px;
+      font-size: inherit;
+      font-weight: 500;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: whitesmoke;
+      border-color: rgba(255,255,255,0.5);
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover, .btn-outline:active {
+      color: #720e9e;
+      background-color: #fff;
+      border-color: #fff;
+    }
+
+    .fa {
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .fa-github:before {
+      content: "\f09b";
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="heading-text">
+      <span style="display: block; color: whitesmoke; border-right: 6px solid #e74c3c; margin-right: 25px;">AVIANA</span>
+      <span style="font-size: 4.5vw; color: whitesmoke;">A NodeJS JWT based authentication service</span>
+    </div>
+    <div class="content-text">
+      <!-- <button class="one-button">
+        <span style="vertical-align: sub;">
+          <svg height="32" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+        </span>
+        <span>GitHub</span>
+      </button> -->
+      <a class="btn-outline"style="border-color: rgba(255,255,255,0.5);">
+        <span class="fab fa-github"></span> View on GitHub
+      </a>
+      <ul class="slick-dots" style="margin-top: 20px;" role="tablist">
+        <li class="slick-active" aria-hidden="false" role="presentation" aria-selected="true" aria-controls="navigation10" id="slick-slide10">
+          <button type="button" data-role="none" role="button" tabindex="0">1</button>
+        </li>
+        <li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation11" id="slick-slide11">
+          <button type="button" data-role="none" role="button" tabindex="0">2</button>
+        </li>
+        <li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation12" id="slick-slide12">
+          <button type="button" data-role="none" role="button" tabindex="0">3</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <footer style="background: #202020; box-sizing: border-box; height: 8vh; text-align: center;">
+    <div style="color: whitesmoke; box-sizing: border-box; padding-top: 20px;">The service is open source hosted on GitHub.</div>
+  </footer>
+</body>
+
+</html>
