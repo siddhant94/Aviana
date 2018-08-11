@@ -1,4 +1,4 @@
 node_modules/
 test.js
-config.js
-db.js
+config/config.js
+config/db.js
