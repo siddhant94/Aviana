@@ -20,7 +20,7 @@
   <!-- This content *may* be used as a part of search engine results. -->
   <meta name="Aviana Auth" content="A NodeJS JWT based authentication service">
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <style>
     html {
@@ -37,7 +37,7 @@
       background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
       background-image: linear-gradient(to right, #720e9e 0, #dd4b39 100%);
       background-repeat: repeat-x;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       box-sizing: border-box;
       height: 92vh;
     }
@@ -46,13 +46,17 @@
       font-size: 10vw;
       text-align: center;
       background: #202020;
-      padding-top: 40%;
+      padding-top: 20%;
       padding-bottom: 20%;
       box-sizing: border-box;
     }
+    .sub-heading-text {
+      font-size: 4.5vw;
+      color: whitesmoke;
+    }
 
     .content-text {
-      padding-top: 20%;
+      padding-top: 50%;
       text-align: center;
       box-sizing: border-box;
     }
@@ -130,6 +134,7 @@
       border-color: rgba(255,255,255,0.5);
       touch-action: manipulation;
       cursor: pointer;
+      text-decoration: none;
     }
 
     .btn-outline:hover, .btn-outline:active {
@@ -150,6 +155,66 @@
     .fa-github:before {
       content: "\f09b";
     }
+
+    @media only screen and (min-width: 426px) and (max-width: 768px){
+      .heading-text {
+        font-size: 8vw;
+        padding-top: 10%;
+        padding-bottom: 10%;
+      }
+      .sub-heading-text {
+        font-size: 4.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 20%;
+      }
+    }
+
+    @media only screen and (min-width: 769px) and (max-width: 1024px){ 
+      .heading-text {
+        font-size: 6vw;
+        padding-top: 10%;
+        padding-bottom: 10%;
+      }
+      .sub-heading-text {
+        font-size: 3.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 20%;
+      }
+    }
+
+    @media only screen and (min-width: 1025px) and (max-width: 1440px){ 
+      .heading-text {
+        font-size: 4.5vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+      }
+      .sub-heading-text {
+        font-size: 2.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 15%;
+      }
+    }
+
+    @media only screen and (min-width: 1441px) { 
+      .heading-text {
+        font-size: 4.5vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+      }
+      .sub-heading-text {
+        font-size: 2.5vw;
+        color: whitesmoke;
+      }
+      .content-text {
+        padding-top: 10%;
+      }
+    }
   </style>
 </head>
 
@@ -157,18 +222,10 @@
   <div class="main-container">
     <div class="heading-text">
       <span style="display: block; color: whitesmoke; border-right: 6px solid #e74c3c; margin-right: 25px;">AVIANA</span>
-      <span style="font-size: 4.5vw; color: whitesmoke;">A NodeJS JWT based authentication service</span>
+      <span class="sub-heading-text">A NodeJS JWT based authentication service</span>
     </div>
     <div class="content-text">
-      <!-- <button class="one-button">
-        <span style="vertical-align: sub;">
-          <svg height="32" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
-            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-          </svg>
-        </span>
-        <span>GitHub</span>
-      </button> -->
-      <a class="btn-outline"style="border-color: rgba(255,255,255,0.5);">
+      <a class="btn-outline" style="border-color: rgba(255,255,255,0.5);" href="https://github.com/siddhant94/Aviana">
         <span class="fab fa-github"></span> View on GitHub
       </a>
       <ul class="slick-dots" style="margin-top: 20px;" role="tablist">
