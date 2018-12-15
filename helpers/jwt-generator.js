@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config/config');
+const config = require('../config/config-sample');
 
 // const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyM0Bnb29nbGUuY29tIiw
 // iX2lkIjoiNWFlNDNjMmNiZmE5NG
