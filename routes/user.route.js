@@ -25,5 +25,10 @@ router.post('/verify', (req, res) => {
   return response;
 });
 
+router.post('/new', (req, res) => {
+  const response = userController.checkUsernameValidity(req.body.email, res);
+  return response;
+});
+
 
 module.exports = router;
