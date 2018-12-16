@@ -1,8 +1,20 @@
-const mongoDb = require('../config/db');
-const AppUser = require('../models/app-model');
+// const mongoDb = require('../config/db');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const AppUser = require('../models/app-model');
 // const generateJWT = require('../helpers/jwt-generator');
+
+async function checkPassword(password, hash) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, hash, (err, res) => {
+      if (err) {
+        return reject(err);
+      }
+
+      return resolve(res);
+    });
+  });
+}
 
 async function registerAppAndGenerateKey(req, res) {
   try {
@@ -60,4 +72,32 @@ async function registerAppAndGenerateKey(req, res) {
   return res.send;
 }
 
-exports.registerAppAndGenerateKey = registerAppAndGenerateKey;
+
+async function findApp(loginCredentials) {
+  try {
+    const app = await AppUser.findOne({ email: loginCredentials.email });
+    const res = await checkPassword(loginCredentials.password, app.password);
+
+    if (res) {
+      return {
+        email: app.email,
+        api_key: app.app_key,
+      };
+    }
+
+    return {
+      err: true,
+      reason: 'Wrong credentials.',
+    };
+  } catch (e) {
+    return {
+      err: true,
+      reason: 'Could not find app.',
+    };
+  }
+}
+
+module.exports = {
+  registerAppAndGenerateKey,
+  findApp,
+};

@@ -8,4 +8,20 @@ router.post('/signup', (req, res) => {
   return response;
 });
 
+router.post('/login', (req, res) => {
+  appController.findApp({
+    email: req.body.email,
+    password: req.body.password,
+  }).then((app) => {
+    if (app.err) {
+      return res.status(403).json({
+        error: app.reason,
+        action: 'login',
+      });
+    }
+
+    return res.status(200).json(app);
+  });
+});
+
 module.exports = router;
