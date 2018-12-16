@@ -1,5 +1,6 @@
 // const JWTToken = require('../helpers/jwt-generator.js');
 // const mongoDb = require('../config/db');
+const User = require('../models/user.model');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User = require('../models/user.model');
@@ -117,6 +118,32 @@ async function verifyAccessToken(accessToken, res) {
   return res.send;
 }
 
+async function checkUsernameValidity(userEmail, res) {
+  try {
+    const emailAvailableResult = await User.findOne({
+      email: userEmail,
+    });
+    if (!emailAvailableResult) {
+      res.status(200).json({
+        available: true,
+      });
+    } else {
+      // Set status code to 204 which stands for `server processes req but gives no-content`.
+      res.status(204).json({
+        available: false,
+      });
+    }
+  } catch (error) {
+    const err = {
+      err_text: 'Could not check for email validity',
+      err_obj: error,
+    };
+    res.status(500).json(err);
+  }
+  return res.send;
+}
+
 exports.saveUserIfNew = saveUserIfNew;
 exports.findUserAndAuthenticate = findUserAndAuthenticate;
 exports.verifyAccessToken = verifyAccessToken;
+exports.checkUsernameValidity = checkUsernameValidity;
