@@ -1,25 +1,25 @@
-const mongoDb = require('../config/db');
-const AppUser = require('../models/app-model');
+// const mongoDb = require('../config/db');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const AppUser = require('../models/app-model');
 // const generateJWT = require('../helpers/jwt-generator');
 
 async function checkPassword(password, hash) {
-    return await new Promise((resolve, reject) => {
-	bcrypt.compare(password, hash, (err, res) => {
-	    if(err) {
-		return reject(err);
-	    }
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, hash, (err, res) => {
+      if (err) {
+        return reject(err);
+      }
 
-	    resolve(res);
-	})
-    })
+      return resolve(res);
+    });
+  });
 }
 
 async function registerAppAndGenerateKey(req, res) {
   try {
     // Checks for existing Apps
-      const checkForExistingApp = await AppUser.findOne({ email: req.body.email });
+    const checkForExistingApp = await AppUser.findOne({ email: req.body.email });
     if (!checkForExistingApp) {
       // Generate hash for password
       const hashGeneratedForApp = await new Promise((resolve, reject) => {
@@ -74,24 +74,30 @@ async function registerAppAndGenerateKey(req, res) {
 
 
 async function findApp(loginCredentials) {
-    try {
-	var app =  await AppUser.findOne({email: loginCredentials.email});
-	var res = await checkPassword(loginCredentials.password, app._doc.password);
+  try {
+    const app = await AppUser.findOne({ email: loginCredentials.email });
+    const res = await checkPassword(loginCredentials.password, app.password);
 
-	if(res)
-	    return {email: app.email,
-		    api_key: app._doc.app_key};
-	else
-	    return {err: true,
-		    reason: "Wrong credentials."}
+    if (res) {
+      return {
+        email: app.email,
+        api_key: app.app_key,
+      };
     }
-    catch (e) {
-	return {err: true,
-		reason: "Could not find app."};
-    }
+
+    return {
+      err: true,
+      reason: 'Wrong credentials.',
+    };
+  } catch (e) {
+    return {
+      err: true,
+      reason: 'Could not find app.',
+    };
+  }
 }
 
 module.exports = {
-    registerAppAndGenerateKey: registerAppAndGenerateKey,
-    findApp: findApp
+  registerAppAndGenerateKey,
+  findApp,
 };

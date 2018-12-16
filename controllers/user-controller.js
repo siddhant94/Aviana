@@ -1,8 +1,8 @@
 // const JWTToken = require('../helpers/jwt-generator.js');
-const mongoDb = require('../config/db');
-const User = require('../models/user.model');
+// const mongoDb = require('../config/db');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const User = require('../models/user.model');
 const generateJWT = require('../helpers/jwt-generator');
 
 async function saveUserIfNew(req, res) {
