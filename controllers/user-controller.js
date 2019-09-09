@@ -117,6 +117,22 @@ async function verifyAccessToken(accessToken, res) {
   return res.send;
 }
 
+async function isUserRegistered(req,res) {
+  try{
+  const checkForExistingUser = await User.findOne({
+    email: req.body.email
+  })
+  if(!checkForExistingUser) {
+    res.status(200).json({"present":false});
+  }
+    res.status(200).json({"present":true});
+  } catch (err) {
+    console.log('Mongo error', err);
+    return res.status(500).send()
+  }
+}
+
 exports.saveUserIfNew = saveUserIfNew;
 exports.findUserAndAuthenticate = findUserAndAuthenticate;
 exports.verifyAccessToken = verifyAccessToken;
+exports.isUserRegistered = isUserRegistered;

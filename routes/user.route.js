@@ -25,5 +25,11 @@ router.post('/verify', (req, res) => {
   return response;
 });
 
+router.post('/email/verify', (req, res) => {
+  //console.log("Req",req);
+  const response = userController.isUserRegistered(req,res);
+  return response;
+})
+
 
 module.exports = router;
