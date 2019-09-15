@@ -6,11 +6,8 @@ branches:
   only:
     - master
 
-install:
-- npm install
-
-before_script:
-  - npm ci
+# before_script:
+#   - npm ci
 
 script:
   - npm run test
