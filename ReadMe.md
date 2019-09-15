@@ -56,6 +56,7 @@ On Success:
 ```  
 JWT Token generated (Access Token) validity is for 2Hours. Support for flexible expiry is to be added.
 
+### user/verify 
 
 Request :   
 (Header Content)   
